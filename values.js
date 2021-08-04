@@ -1,3 +1,8 @@
+age = 50;
+gender = 0;
+smoker = 0;
+reqinsurance = 25;
+
 const IA = [
   [
     [
@@ -162,13 +167,57 @@ const Empire_life = [
 ];
 
 const Assumption_Life = [
-  [[], []],
-  [[], []],
+  [
+    [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+  ],
+  [
+    [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+  ],
 ];
 
 const Foresters = [
-  [[], []],
-  [[], []],
+  [
+    [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+  ],
+  [
+    [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+  ],
 ];
 
 const CPP = [
@@ -253,4 +302,152 @@ const Edge_Benefits = [
   ],
 ];
 
-console.log(Edge_Benefits);
+var Rates = [
+  ["IA", 0, 0, 0],
+  ["Speciality_Life", 0, 0, 0],
+  ["SSQ", 0, 0, 0],
+  ["Empire_life", 0, 0, 0],
+  ["Assumption_Life", 0, 0, 0],
+  ["Foresters", 0, 0, 0],
+  ["CPP", 0, 0, 0],
+  ["Edge_Benefits", 0, 0, 0],
+];
+
+var sumofinsurance = 0;
+
+if (age >= 18 && age <= 80) {
+  //IA
+  if (age >= 18 && age <= 50) {
+    Rates[0][1] = 50;
+    sumofinsurance += 50;
+  } else {
+    Rates[0][1] = 25;
+    sumofinsurance += 25;
+  }
+
+  //Speciality Life Insurance
+  if (age >= 18 && age <= 74) {
+    Rates[1][1] = 25;
+    sumofinsurance += 25;
+  } else {
+    Rates[1][1] = 0;
+  }
+
+  //SSQ
+  if (age >= 18 && age <= 70) {
+    Rates[2][1] = 50;
+    sumofinsurance += 50;
+  } else {
+    Rates[2][1] = 25;
+    sumofinsurance += 25;
+  }
+
+  //EmpireLife
+  if (age >= 40 && age <= 50) {
+    Rates[3][1] = 50;
+    sumofinsurance += 50;
+  } else if (age >= 51 && age <= 75) {
+    Rates[3][1] = 25;
+    sumofinsurance += 25;
+  } else {
+    Rates[3][1] = 0;
+  }
+
+  //Foresters
+  if (age >= 50 && age <= 80) {
+    Rates[5][1] = 50;
+    sumofinsurance += 50;
+  } else {
+    Rates[5][1] = 0;
+  }
+
+  //CPP
+  if (age >= 18 && age <= 75) {
+    Rates[6][1] = 50;
+    sumofinsurance += 50;
+  } else {
+    Rates[6][1] = 0;
+  }
+
+  //EDGE
+  if (age >= 18 && age <= 69) {
+    Rates[7][1] = 50;
+    sumofinsurance += 50;
+  } else {
+    Rates[7][1] = 0;
+  }
+} else {
+  console.log(
+    "Sry You cant get any insurance from any company. Please Enter Age Between 18-80"
+  );
+}
+
+console.log(
+  "\n\nFor Age " +
+    age +
+    ", the Maximum Amount of Insurance you can get is $" +
+    sumofinsurance +
+    "K"
+);
+console.log(
+  "\nRates For " +
+    (gender === 0 ? " Male" : "Female") +
+    (smoker === 0 ? " non-smoker" : " smoker") +
+    " of age " +
+    age +
+    " are "
+);
+
+Rates[0][2] = IA[gender][smoker][age - 18];
+Rates[1][2] = Speciality_Life[gender][smoker][age - 18];
+Rates[2][2] = SSQ[gender][smoker][age - 18];
+Rates[3][2] = Empire_life[gender][smoker][age - 18];
+Rates[4][2] = Assumption_Life[gender][smoker][age - 18];
+Rates[5][2] = Foresters[gender][smoker][age - 18];
+Rates[6][2] = CPP[gender][smoker][age - 18];
+Rates[7][2] = Edge_Benefits[gender][smoker][age - 18];
+
+for (let i = 0; i < 8; i++) {
+  if (Rates[i][1] === 50) {
+    Rates[i][3] = Rates[i][2] / 2;
+  } else {
+    Rates[i][3] = Rates[i][2];
+  }
+}
+//console.table(Rates);
+
+Rates.sort(function (a, b) {
+  return a[3] - b[3];
+});
+
+console.table(Rates);
+
+console.log("Required Insurance: " + reqinsurance + "K");
+
+for (let i = 0; i < 8; i++) {
+  if (Rates[i][1] === 0) {
+    continue;
+  } else {
+    if (reqinsurance <= Rates[i][1]) {
+      console.log(
+        "You can buy " +
+          reqinsurance +
+          "K from " +
+          Rates[i][0] +
+          " for $" +
+          Rates[i][2] / (Rates[i][1] / reqinsurance)
+      );
+      break;
+    } else {
+      console.log(
+        "You can buy " +
+          Rates[i][1] +
+          "K from " +
+          Rates[i][0] +
+          " for $" +
+          Rates[i][2]
+      );
+      reqinsurance -= Rates[i][1];
+    }
+  }
+}

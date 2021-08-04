@@ -5,20 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Maximum Guaranteed Insurance Available</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" />
 
     <style>
       body {
         font-family: "Roboto", sans-serif;
       }
 
-      input[type="text"] {
+      input[type="number"] {
         border-color: #225cff;
         border-radius: 15px;
         outline: none;
+        width: 125px;
+      }
+
+      .radio {
+        position: relative;
+        cursor: pointer;
+        line-height: 20px;
+        font-size: 14px;
+        margin: 15px;
+      }
+      .radio .label {
+        position: relative;
+        display: block;
+        float: left;
+        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #c8ccd4;
+        border-radius: 100%;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .radio .label:after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background: #225cff;
+        transform: scale(0);
+        transition: all 0.2s ease;
+        opacity: 0.08;
+        pointer-events: none;
+      }
+      .radio:hover .label:after {
+        transform: scale(3.6);
+      }
+      input[type="radio"]:checked + .label {
+        border-color: #225cff;
+      }
+      input[type="radio"]:checked + .label:after {
+        transform: scale(1);
+        transition: all 0.2s cubic-bezier(0.35, 0.9, 0.4, 0.9);
+        opacity: 1;
       }
 
       .hidden {
@@ -42,7 +84,12 @@
         box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
       }
 
-      li{
+      hr {
+        width: 100%;
+        border-width: 1px;
+      }
+
+      li {
         list-style: circle;
       }
     </style>
@@ -50,187 +97,77 @@
 
   <body>
     <div class="card shadow2">
-      <h5 style="margin:auto; margin-bottom: 20px; color:red">Maximum Guaranteed Insurance Available</h5>
+      <h5 style="margin: auto; margin-bottom: 20px; color: red">Maximum Guaranteed Insurance Available</h5>
       <br />
-      <form
-        style="display: flex; flex-direction: column"
-        onchange="myFunction()"
-        action="javascript:void(0);"
-      >
-        <center>
+      <form style="display: flex; flex-direction: column" onchange="myFunction()" action="javascript:void(0);">
         <div>
           <span class="label"></span>Age:
-          
           <input
-            type="text"
+            type="number"
             id="age"
             name="age"
+            min="18"
+            max="80"
             value=""
+            required
+            style="margin-bottom: 10px; margin-left: 150px"
+          />
+        </div>
+
+        <div>
+          <ul id="myList"></ul>
+        </div>
+
+        <div>
+          <span class="label"></span>Sex:
+          <label for="male" class="radio" style="margin-bottom: 10px; margin-left: 150px">
+            <input type="radio" name="gender" id="male" class="hidden" checked />
+            <span class="label"></span>Male
+          </label>
+          <label for="female" class="radio">
+            <input type="radio" name="gender" id="female" class="hidden" />
+            <span class="label"></span>Female
+          </label>
+        </div>
+
+        <div>
+          <span class="label">Smoking Status:</span>
+          <label for="nonsmoker" class="radio" style="margin-bottom: 10px; margin-left: 65px">
+            <input type="radio" name="smoke" id="nonsmoker" class="hidden" checked />
+            <span class="label"></span>Non Smoker
+          </label>
+          <label for="smoker" class="radio">
+            <input type="radio" name="smoke" id="smoker" class="hidden" />
+            <span class="label"></span>Smoker
+          </label>
+        </div>
+
+        <div>
+          <span class="label"></span>Amount of Insurance:
+          <input
+            type="number"
+            id="coverage"
+            name="age"
+            min="25000"
+            max="0"
+            value=""
+            step="25000"
             required
             style="margin-bottom: 10px; margin-left: 30px"
           />
         </div>
-        </center>
-
-        <hr style="width: 100%; border-width: 1px" />
+        <hr />
         <div>
-          <ul id="myList">
-          </ul>
-          <a href="https://docs.google.com/spreadsheets/d/1o21lfu7KDh9ijsdZbYbWlOPzBDTrORUKFSjdcsLYn9Q/edit?usp=sharing" target="_blank">Click Me To open excel sheet</a>
+          <ul id="myList2"></ul>
+          <a
+          href="https://docs.google.com/spreadsheets/d/1o21lfu7KDh9ijsdZbYbWlOPzBDTrORUKFSjdcsLYn9Q/edit?usp=sharing"
+          target="_blank"
+          >Click Me To open excel sheet</a
+        >
         </div>
+
       </form>
     </div>
-
-    <script>
-      function myFunction() {
-        var age = parseInt(document.getElementById("age").value);
-        document.getElementById("myList").innerHTML="";
-        var sumofinsurance = 0;
-        
-
-        if (age >= 18 && age <= 80) {
-          //IA
-          if (age >= 18 && age <= 50) {
-            
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode("You can get 50K from Industrial Alliance");
-            node.appendChild(textnode);
-            document.getElementById("myList").appendChild(node);
-            sumofinsurance += 50;
-          } else {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode("You can get 25K from Industrial Alliance");
-            node.appendChild(textnode);
-            document.getElementById("myList").appendChild(node);
-            sumofinsurance += 25;
-          }
-
-          //Speciality Life Insurance
-          if (age >= 18 && age <= 74) {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode(
-              "You can get 25K from Speciality Life Insurance"
-            );
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-            sumofinsurance += 25;
-          } else {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode(
-              "Sry You cant get any insurance from Speciality Life Insurance"
-            );
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-          }
-
-          //SSQ
-          if (age >= 18 && age <= 70) {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode("You can get 50K from SSQ");
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-            sumofinsurance += 50;
-          } else {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode("You can get 25K from SSQ");
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-            sumofinsurance += 25;
-          }
-
-          //EmpireLife
-          if (age >= 40 && age <= 50) {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode(
-              "You can get 50K from EmpireLife"
-            );
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-            sumofinsurance += 50;
-          } else if (age >= 51 && age <= 75) {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode(
-              "You can get 25K from EmpireLife"
-            );
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-            sumofinsurance += 25;
-          } else {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode(
-              "Sry You cant get any insurance from EmpireLife"
-            );
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-          }
-
-          //Foresters
-          if (age >= 50 && age <= 80) {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode(
-              "You can get 25K from Foresters"
-            );
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-            sumofinsurance += 50;
-          } else {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode(
-              "Sry You cant get any insurance from Foresters"
-            );
-            node.appendChild(textnode);
-            document.getElementById("myList").appendChild(node);
-          }
-
-          //CPP
-          if (age >= 18 && age <= 75) {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode("You can get 50K from CPP");
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-            sumofinsurance += 50;
-          } else {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode("Sry You cant get any insurance from CPP");
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-          }
-
-          //EDGE
-          if (age >= 18 && age <= 69) {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode("You can get 50K from EDGE");
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-            sumofinsurance += 50;
-          } else {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode(
-              "Sry You cant get any insurance from EDGE"
-            );
-            node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-          }
-        } else {
-          var node = document.createElement("LI");
-            var textnode = document.createTextNode(
-            "Sry You cant get any insurance from any company. Please Enter Age Between 18-80"
-          );
-          node.appendChild(textnode);
-          document.getElementById("myList").appendChild(node);
-        }
-
-        var node = document.createElement("HR");
-        document.getElementById("myList").appendChild(node);
-
-        var node = document.createElement("B");
-        var textnode = document.createTextNode(
-        "Summing up all, the Maximum Amount of Insurance you can get is $" + sumofinsurance + "K"
-        );
-        node.appendChild(textnode);
-        document.getElementById("myList").appendChild(node);
-        
-      }
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
